@@ -30,28 +30,25 @@ class Bfs:
         print("Frontier: " + str(frontier.items))
         explored = set([])
         frontier.enqueue([self.board])
-        state = frontier.items[0]
+        state = frontier.items[1]
 
         if self.goalTest(state):
             return(explored)
 
-        oneBoard = board.Board(frontier.items[0])
+        oneBoard = board.Board(frontier.items[1])
         frontier2 = set([])
-        print(len(frontier.items))
-        print(frontier.items[0])
-        print(frontier.items[1])
         for lyst in frontier.items:
-            tup_lyst = tuple(lyst)
-            #frontier2.add(tup_lyst)
-            #print(tu)
-        #union = explored.union(frontier2)
-        #frontier.dequeue(frontier.items.index(frontier.items[0]))
+            if frontier.items.index(lyst) != 0:
+                frontier2.add(tuple(lyst))
+        print("Tuple Frontier: " + str(frontier2))
+        union = explored.union(frontier2)
+        frontier.dequeue(frontier.items.index(frontier.items[0]))
 
-        #print("Frontier: After Dequeue" + str(frontier.items))
-        #print("Union: " + str(union))
-        #print("Board: " + str(self.board))
-        #print("Frontier: " + str(frontier.items))
-        #print("Explored: " + str(explored))
+        print("Frontier: After Dequeue" + str(frontier.items))
+        print("Union: " + str(union))
+        print("Board: " + str(self.board))
+        print("Frontier: " + str(frontier.items))
+        print("Explored: " + str(explored))
 
         #for neighbor in oneBoard.neighbors():
         #    if tuple(neighbor) not in union:
