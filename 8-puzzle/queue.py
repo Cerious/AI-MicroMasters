@@ -13,9 +13,3 @@ class Queue:
 
     def size(self):
         len(self.items)
-
-oneQueue = Queue([[1,2,3]])
-print("Items: " + str(oneQueue.items))
-oneQueue.enqueue([3,4,5])
-print("Items: " + str(oneQueue.items))
-print("First List: " + str(oneQueue.items[0]))

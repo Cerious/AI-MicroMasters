@@ -20,41 +20,37 @@ class Bfs:
                 return(False)
         count += 1
 
-    def testQueue(self):
-        frontier = queue.Queue([self.board])
-        return("First Item: " + str(frontier.items))
+    def bfs(self,arr,goalState=[0,1,2,3,4,5,6,7,8]):
 
-    def bfs(self, goalState=[0,1,2,3,4,5,6,7,8]):
-
-        frontier = queue.Queue([self.board])
+        frontier = queue.Queue([arr])
         print("Frontier: " + str(frontier.items))
         explored = set([])
-        frontier.enqueue([self.board])
-        state = frontier.items[1]
 
-        if self.goalTest(state):
+        if self.goalTest(frontier.items[0]):
             return(explored)
+            return(True)
 
-        oneBoard = board.Board(frontier.items[1])
+        oneBoard = board.Board(frontier.items[0])
+
         frontier2 = set([])
         for lyst in frontier.items:
             if frontier.items.index(lyst) != 0:
                 frontier2.add(tuple(lyst))
-        print("Tuple Frontier: " + str(frontier2))
         union = explored.union(frontier2)
+
         frontier.dequeue(frontier.items.index(frontier.items[0]))
 
-        print("Frontier: After Dequeue" + str(frontier.items))
-        print("Union: " + str(union))
-        print("Board: " + str(self.board))
-        print("Frontier: " + str(frontier.items))
-        print("Explored: " + str(explored))
-
-        #for neighbor in oneBoard.neighbors():
-        #    if tuple(neighbor) not in union:
-        #        explored.add(tuple(neighbor))
-        #        frontier.enqueue(neighbor)
-
+        for neighbor in oneBoard.neighbors():
+            if tuple(neighbor) not in union:
+                explored.add(tuple(neighbor))
+                frontier.enqueue(neighbor)
+        print("The Explored: " + str(explored))
+        print("The Frontier: " + str(frontier.items))
+        #count = 0
+        #self.bfs(frontier.items[0])
+        #while count <= 2:
+        #    self.bfs(neighbors[0])
+        #    count += 1
     #def path_to_goal(self,explored_nodes):
         ####path_lyst = []
         ###the sequence of moves taken to reach the goal
@@ -90,4 +86,4 @@ class Bfs:
 lyst= [1,2,5,3,4,0,6,7,8]
 search = Bfs(lyst)
 print("The search starts here....")
-print(search.bfs())
+print(search.bfs(search.board))
