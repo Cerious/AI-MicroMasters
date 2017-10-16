@@ -12,48 +12,70 @@ class Bfs:
 
 
     def goalTest(self, state, goalState=[0,1,2,3,4,5,6,7,8]):
-        count = 0
-        for number in goalState:
-            if number == state[count]:
-                return(True)
-            else:
-                return(False)
-        count += 1
 
-    def bfs(self,arr,goalState=[0,1,2,3,4,5,6,7,8]):
-
-        frontier = queue.Queue([arr])
-        print("Frontier: " + str(frontier.items))
-        explored = set([])
-
-        if self.goalTest(frontier.items[0]):
-            return(explored)
+        if state == goalState:
             return(True)
+        else:
+            return(False)
 
-        oneBoard = board.Board(frontier.items[0])
 
-        frontier2 = set([])
-        for lyst in frontier.items:
-            if frontier.items.index(lyst) != 0:
+    def bfs(self,goalState=[0,1,2,3,4,5,6,7,8]):
+        arr = self.board
+        frontier = queue.Queue([arr])
+        explored = set([])
+        count = 0
+        while self.goalTest(frontier.items[0]) == False:
+
+            oneBoard = board.Board(frontier.items[0])
+
+            frontier2 = set([])
+            frontier.dequeue(frontier.items.index(frontier.items[0]))
+
+            for lyst in frontier.items:
+                #if frontier.items.index(lyst) != 0:
                 frontier2.add(tuple(lyst))
-        union = explored.union(frontier2)
 
-        frontier.dequeue(frontier.items.index(frontier.items[0]))
+            union = explored.union(frontier2)
+            for neighbor in oneBoard.neighbors():
+                if tuple(neighbor) not in union:
+                    explored.add(tuple(neighbor))
+                    frontier.enqueue(len(frontier.items), neighbor)
 
-        for neighbor in oneBoard.neighbors():
-            if tuple(neighbor) not in union:
-                explored.add(tuple(neighbor))
-                frontier.enqueue(neighbor)
-        print("The Explored: " + str(explored))
-        print("The Frontier: " + str(frontier.items))
-        #count = 0
-        #self.bfs(frontier.items[0])
-        #while count <= 2:
-        #    self.bfs(neighbors[0])
-        #    count += 1
+            if self.goalTest(frontier.items[0]):
+                print("Success...")
+                return(explored)
+
+            print("Iteration Number: " + str(count+1))
+            print(str(frontier.items[0]))
+            print(self.goalTest(frontier.items[0]))
+
+            print("#################################################")
+            count += 1
+
+
+
+
     #def path_to_goal(self,explored_nodes):
         ####path_lyst = []
         ###the sequence of moves taken to reach the goal
+        #sett = []
+        #for item in explored:
+        #    newSquare = board.Board(item)
+        #    state = newSquare.neighbors()
+
+        #    print("Item outer epoch: " + str(item))
+
+            #print("xxx: neigh" + str(state))
+        #    for q in explored:
+
+        #        print("Q: " + str(q))
+        #        print("State: " + str(state))
+        #        print("State inckudes q?" + str(list(q) in state))
+        #        if list(q) in state:
+        #            sett.append(list(q))
+        #    print(sett)
+
+
     def cost_of_path(self, explored_nodes):
         exp = path_to_goal(explored_nodes)
         return(len(explored_nodes))
@@ -76,6 +98,8 @@ class Bfs:
 
     def running_time(self, search_instance):
     #the total running time of the search instance, reported in seconds
+        start_time = time.time()
+        search_instance
         return(time.time() - start_time)
 
     def max_ram_usage():
@@ -86,4 +110,6 @@ class Bfs:
 lyst= [1,2,5,3,4,0,6,7,8]
 search = Bfs(lyst)
 print("The search starts here....")
-print(search.bfs(search.board))
+#print(search.board)
+print(search.bfs())
+print(search.running_time(search.bfs))

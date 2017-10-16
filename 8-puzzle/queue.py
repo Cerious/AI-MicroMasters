@@ -5,8 +5,8 @@ class Queue:
     def isEmpty(self):
         return(self.items) == []
 
-    def enqueue(self, item):
-        self.items.insert(0, item)
+    def enqueue(self, position,item):
+        self.items.insert(position, item)
 
     def dequeue(self, number):
         self.items.pop(number)

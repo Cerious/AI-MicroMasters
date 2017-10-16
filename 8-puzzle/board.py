@@ -24,18 +24,17 @@ class Board:
             stt2 = self.swap(stt2,0,3)
             neighbor.append(stt2)
         elif self.state.index(0) == 1:
-            stt1 = self.swap(stt1,1,0)
+            stt1 = self.swap(stt1,1,4)
             neighbor.append(stt1)
-            stt2 = self.swap(stt2,1,4)
+            stt2 = self.swap(stt2,1,0)
             neighbor.append(stt2)
             stt3 = self.swap(stt3,1,2)
             neighbor.append(stt3)
         elif self.state.index(0) == 2:
-            stt1 = self.swap(stt1,2,1)
+            stt1 = self.swap(stt1,2,5)
             neighbor.append(stt1)
-            stt2 = self.swap(stt2,2,5)
+            stt2 = self.swap(stt2,2,1)
             neighbor.append(stt2)
-            ###below is broken
         elif self.state.index(0) == 3:
             stt1 = self.swap(stt1,3,0)
             neighbor.append(stt1)
@@ -79,7 +78,6 @@ class Board:
         #print(self.swap(0, 1))
         #print(stt1 == stt2)
         return(neighbor)
-        return(neighbor)
 
 
 
@@ -87,8 +85,8 @@ class Board:
 
 
 
-#lyst = [7,2,5,3,4,0,1,6,8]
-#initial = Board(lyst)
+lyst = [1,2,5,3,4,0,6,8,7]
+initial = Board(lyst)
 #print("State: " + str(initial.state))
 #print(initial.swap(0,1))
 #print(initial.neighbors())
