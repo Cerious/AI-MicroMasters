@@ -29,11 +29,13 @@ class Bfs:
             oneBoard = board.Board(frontier.items[0])
 
             frontier2 = set([])
-            frontier.dequeue(frontier.items.index(frontier.items[0]))
 
             for lyst in frontier.items:
                 #if frontier.items.index(lyst) != 0:
                 frontier2.add(tuple(lyst))
+            print("Frontier 2: " + str(frontier2))
+
+            frontier.dequeue(frontier.items.index(frontier.items[0]))
 
             union = explored.union(frontier2)
             for neighbor in oneBoard.neighbors():
@@ -100,7 +102,7 @@ class Bfs:
     #the total running time of the search instance, reported in seconds
         start_time = time.time()
         search_instance
-        return(time.time() - start_time)
+        return(str(time.time() - start_time) + " seconds...")
 
     def max_ram_usage():
         return(None)
