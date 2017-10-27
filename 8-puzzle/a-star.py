@@ -8,9 +8,13 @@ class Ast:
     start_time = time.time()
 
     def __init__(self, board):
-        self.board = []
+        self.board = board
 
+    #cost to reach node N
+    def cost_to_N(currentNode, goalNode):
+        return(None)
 
+        
     def ast(initialState, goalTest):
         ###/*Cost*/f(n) = G(n) + h(n)
         ###inorder to calculte the cost we will first need to calculate the
