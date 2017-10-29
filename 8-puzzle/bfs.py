@@ -30,6 +30,10 @@ class Bfs:
 
             frontier2 = set([])
 
+            par_nei = {}
+            #make a dictionary where neighbors are keys and parents
+            #are neighbors
+
             for lyst in frontier.items:
                 #if frontier.items.index(lyst) != 0:
                 frontier2.add(tuple(lyst))
